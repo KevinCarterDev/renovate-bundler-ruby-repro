@@ -31,6 +31,20 @@ fails on the branch:
 Bundler is unlocking ruby, but the lockfile can't be updated because frozen mode is set
 ```
 
+## Results
+
+Both versions were run against this repository, using separate branch
+prefixes so their PRs sit side by side.
+
+| Renovate | Ruby branch commands | `RUBY VERSION` in `Gemfile.lock` | PR |
+|---|---|---|---|
+| 44.149.2 | `install-tool ruby 4.0.7`, `ruby --version`, `bundler lock` | `ruby 4.0.6` (unchanged) | [#2](https://github.com/KevinCarterDev/renovate-bundler-ruby-repro/pull/2) |
+| 44.89.1 | `install-tool ruby 4.0.7`, `install-tool bundler 4.0.19`, `ruby --version`, `bundler lock` | `ruby 4.0.7` | [#4](https://github.com/KevinCarterDev/renovate-bundler-ruby-repro/pull/4) |
+
+The `rake` PRs from each run are [#1](https://github.com/KevinCarterDev/renovate-bundler-ruby-repro/pull/1) and [#3](https://github.com/KevinCarterDev/renovate-bundler-ruby-repro/pull/3).
+44.89.1 is the last release before #46084; 44.90.0 is the first release
+that includes it.
+
 ## Cause
 
 1. The `rake` branch runs `install-tool ruby 4.0.6` and
@@ -70,4 +84,13 @@ docker run --rm \
   -e RENOVATE_REPOSITORIES=<owner>/<fork> \
   -e LOG_LEVEL=debug \
   ghcr.io/renovatebot/renovate:44.149.2
+```
+
+For the comparison run, add these so 44.89.1 creates its own branches
+instead of adopting the existing `renovate/` ones:
+
+```sh
+  -e RENOVATE_BRANCH_PREFIX=renovate-44.89.1/ \
+  -e RENOVATE_BRANCH_PREFIX_OLD=renovate-44.89.1/ \
+  -e RENOVATE_COMMIT_MESSAGE_SUFFIX="(44.89.1)" \
 ```
