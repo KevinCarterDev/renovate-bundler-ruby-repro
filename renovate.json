@@ -1,0 +1,11 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "prHourlyLimit": 0,
+  "packageRules": [
+    {
+      "description": "Process the rake branch before the ruby branch, so Bundler is first installed under the old Ruby.",
+      "matchDepNames": ["rake"],
+      "prPriority": 1
+    }
+  ]
+}

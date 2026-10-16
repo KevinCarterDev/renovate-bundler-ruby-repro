@@ -1,0 +1,20 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rake (13.3.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rake
+
+CHECKSUMS
+  bundler (4.0.19) sha256=b48056e4c77fb3853cc47775b5447ede44aaa4f53c32f168014ab4fe86587d47
+  rake (13.3.1) sha256=8c9e89d09f66a26a01264e7e3480ec0607f0c497a861ef16063604b1b08eb19c
+
+RUBY VERSION
+  ruby 4.0.6
+
+BUNDLED WITH
+  4.0.19
